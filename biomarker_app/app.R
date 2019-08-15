@@ -267,34 +267,34 @@ server <- function(input, output) {
       relationship_variable_classes()[1] == "factor" & is.na(relationship_variable_classes()[2]) ~ "bar_plot",
       relationship_variable_classes()[1] == "factor" & relationship_variable_classes()[2] != "factor" ~ "box_plot",
       relationship_variable_classes()[1] != "factor" & relationship_variable_classes()[2] == "factor" ~ "box_plot2",
-      is.na(relationship_variable_classes()[2]) & relationship_variable_classes()[1] != "factor"  ~ "histogram"
+      is.na(relationship_variable_classes()[2]) & relationship_variable_classes()[1] != "factor" ~ "histogram"
     )
   })
 
   relationship_plot_base <- reactive({
     switch(relationship_plot_type(),
-      "point_plot" = 
+      "point_plot" =
         simulated_data %>%
           ggplot(aes_string(
             x = {{ input$b1 }},
             y = {{ input$b2 }}
           )) +
           geom_point(),
-      "box_plot1" = 
+      "box_plot1" =
         simulated_data %>%
           ggplot(aes_string(
             x = {{ input$b1 }},
             y = {{ input$b2 }}
           )) +
           geom_jitter(width = 0.1, alpha = 0.1) + geom_boxplot(width = 0.05, fill = "wheat", color = "red"),
-      "box_plot2" = 
+      "box_plot2" =
         simulated_data %>%
           ggplot(aes_string(
             x = {{ input$b2 }},
             y = {{ input$b1 }}
           )) +
           geom_jitter(width = 0.1, alpha = 0.1) + geom_boxplot(width = 0.05, fill = "wheat", color = "red"),
-      "histogram" = 
+      "histogram" =
         simulated_data %>%
           ggplot(aes_string(x = {{ input$b1 }})) +
           geom_histogram(),
