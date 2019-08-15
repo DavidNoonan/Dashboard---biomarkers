@@ -55,7 +55,7 @@ options(ggplot2.continuous.colour = "viridis", shiny.usecairo = T)
 # UI
 
 ui <- navbarPage(
-  "Biomarker Shiny App",
+  "Mock Clinical Trial Dashboard by David Noonan",
   tabPanel(
     "Population Summary",
     titlePanel("Population Summary"),
