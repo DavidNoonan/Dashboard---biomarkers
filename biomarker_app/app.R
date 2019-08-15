@@ -2,7 +2,7 @@ library(shiny)
 library(tidyverse)
 library(Cairo) # for better graphics
 
-# TODO: add bar plot when only factors are chosen in tab 2
+# TODO: remove brushing from plots that don't allow it.
 
 set.seed(88)
 
@@ -21,7 +21,7 @@ simulated_data_population <- tibble(
 )
 
 
-# generate
+# generate fake data based the above population
 simulated_data <- replicate(n = 10, expr = simulated_data_population, simplify = FALSE) %>%
   bind_rows() %>%
   mutate(
